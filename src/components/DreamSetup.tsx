@@ -21,10 +21,13 @@ type DreamFormData = z.infer<typeof dreamSchema>;
 
 interface DreamSetupProps {
   onSave: (data: DreamFormData) => void;
+  initialData?: DreamFormData;
 }
 
-export const DreamSetup = ({ onSave }: DreamSetupProps) => {
-  const [timeUnit, setTimeUnit] = useState<"days" | "months" | "years">("months");
+export const DreamSetup = ({ onSave, initialData }: DreamSetupProps) => {
+  const [timeUnit, setTimeUnit] = useState<"days" | "months" | "years">(
+    initialData?.timeUnit || "months"
+  );
 
   const {
     register,
@@ -33,7 +36,7 @@ export const DreamSetup = ({ onSave }: DreamSetupProps) => {
     setValue,
   } = useForm<DreamFormData>({
     resolver: zodResolver(dreamSchema),
-    defaultValues: {
+    defaultValues: initialData || {
       dreamName: "VW Tiguan 2019 черного цвета",
       imageUrl: "",
       targetAmount: 15000,
@@ -56,10 +59,10 @@ export const DreamSetup = ({ onSave }: DreamSetupProps) => {
             </div>
           </div>
           <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">
-            Настройте свою мечту
+            {initialData ? "Редактировать мечту" : "Настройте свою мечту"}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Определите цель и начните путь к её достижению
+            {initialData ? "Обновите параметры своей мечты" : "Определите цель и начните путь к её достижению"}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -141,7 +144,7 @@ export const DreamSetup = ({ onSave }: DreamSetupProps) => {
               type="submit"
               className="w-full bg-gradient-to-r from-primary to-amber-600 hover:opacity-90 transition-opacity text-primary-foreground font-semibold text-lg py-6"
             >
-              Начать копить
+              {initialData ? "Сохранить изменения" : "Начать копить"}
             </Button>
           </form>
         </CardContent>

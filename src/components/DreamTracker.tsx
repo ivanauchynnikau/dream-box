@@ -114,6 +114,29 @@ export const DreamTracker = ({ dreamData, onReset, onUpdateSavings }: DreamTrack
             <CardTitle className="text-2xl">{dreamData.dreamName}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
+            {/* Add Savings */}
+            <div className="space-y-3">
+              <label className="text-sm font-medium">Отложить сегодня</label>
+              <div className="flex gap-3">
+                <Input
+                  type="number"
+                  step="0.01"
+                  placeholder="Введите сумму"
+                  value={savingAmount}
+                  onChange={(e) => setSavingAmount(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && handleAddSaving()}
+                  className="bg-secondary border-input"
+                />
+                <Button
+                  onClick={handleAddSaving}
+                  className="bg-gradient-to-r from-accent to-green-600 hover:opacity-90 transition-opacity"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  Добавить
+                </Button>
+              </div>
+            </div>
+
             {/* Progress Bar */}
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
@@ -178,29 +201,6 @@ export const DreamTracker = ({ dreamData, onReset, onUpdateSavings }: DreamTrack
                 </p>
               </div>
             )}
-
-            {/* Add Savings */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium">Отложить сегодня</label>
-              <div className="flex gap-3">
-                <Input
-                  type="number"
-                  step="0.01"
-                  placeholder="Введите сумму"
-                  value={savingAmount}
-                  onChange={(e) => setSavingAmount(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && handleAddSaving()}
-                  className="bg-secondary border-input"
-                />
-                <Button
-                  onClick={handleAddSaving}
-                  className="bg-gradient-to-r from-accent to-green-600 hover:opacity-90 transition-opacity"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Добавить
-                </Button>
-              </div>
-            </div>
           </CardContent>
         </Card>
 

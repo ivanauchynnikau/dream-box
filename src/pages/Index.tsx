@@ -26,8 +26,9 @@ const Index = () => {
   const handleSaveDream = (data: any) => {
     const newDreamData: DreamData = {
       ...data,
-      savedAmount: 0,
-      startDate: new Date().toISOString(),
+      savedAmount: dreamData?.savedAmount || 0,
+      startDate: dreamData?.startDate || new Date().toISOString(),
+      lastSavedDate: dreamData?.lastSavedDate,
     };
     setDreamData(newDreamData);
     localStorage.setItem("dreamData", JSON.stringify(newDreamData));
@@ -46,10 +47,7 @@ const Index = () => {
   };
 
   const handleReset = () => {
-    if (confirm("Вы уверены, что хотите сбросить данные и начать заново?")) {
-      localStorage.removeItem("dreamData");
-      setDreamData(null);
-    }
+    setDreamData(null);
   };
 
   if (!dreamData) {
