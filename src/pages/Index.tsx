@@ -1,13 +1,67 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import { DreamSetup } from "@/components/DreamSetup";
+import { DreamTracker } from "@/components/DreamTracker";
+
+interface DreamData {
+  dreamName: string;
+  imageUrl: string;
+  targetAmount: number;
+  timeValue: number;
+  timeUnit: "days" | "months" | "years";
+  savedAmount: number;
+  startDate: string;
+  lastSavedDate?: string;
+}
 
 const Index = () => {
+  const [dreamData, setDreamData] = useState<DreamData | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("dreamData");
+    if (saved) {
+      setDreamData(JSON.parse(saved));
+    }
+  }, []);
+
+  const handleSaveDream = (data: any) => {
+    const newDreamData: DreamData = {
+      ...data,
+      savedAmount: 0,
+      startDate: new Date().toISOString(),
+    };
+    setDreamData(newDreamData);
+    localStorage.setItem("dreamData", JSON.stringify(newDreamData));
+  };
+
+  const handleUpdateSavings = (amount: number) => {
+    if (!dreamData) return;
+
+    const updatedData: DreamData = {
+      ...dreamData,
+      savedAmount: dreamData.savedAmount + amount,
+      lastSavedDate: new Date().toDateString(),
+    };
+    setDreamData(updatedData);
+    localStorage.setItem("dreamData", JSON.stringify(updatedData));
+  };
+
+  const handleReset = () => {
+    if (confirm("Вы уверены, что хотите сбросить данные и начать заново?")) {
+      localStorage.removeItem("dreamData");
+      setDreamData(null);
+    }
+  };
+
+  if (!dreamData) {
+    return <DreamSetup onSave={handleSaveDream} />;
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <DreamTracker
+      dreamData={dreamData}
+      onReset={handleReset}
+      onUpdateSavings={handleUpdateSavings}
+    />
   );
 };
 
