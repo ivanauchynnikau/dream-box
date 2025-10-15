@@ -3,21 +3,28 @@ import { supabase, DreamData } from '@/lib/supabase';
 export class DreamService {
   // Получить мечту пользователя
   static async getUserDream(userId: string): Promise<DreamData | null> {
+    console.log('DreamService.getUserDream called for userId:', userId);
+    
     const { data, error } = await supabase
       .from('dreams')
       .select('*')
       .eq('user_id', userId)
-      .single();
+      .maybeSingle(); // Изменено с .single() на .maybeSingle()
 
     if (error) {
-      if (error.code === 'PGRST116') {
-        // Запись не найдена - это нормально для нового пользователя
-        return null;
-      }
       console.error('Ошибка получения мечты:', error);
+      console.error('Error code:', error.code);
+      console.error('Error message:', error.message);
+      
+      // Если ошибка связана с schema cache, показываем понятное сообщение
+      if (error.message.includes('schema cache') || error.code === 'PGRST301') {
+        throw new Error('База данных еще загружается. Пожалуйста, подождите 30 секунд и обновите страницу.');
+      }
+      
       throw error;
     }
 
+    console.log('Dream data fetched:', data);
     return data;
   }
 

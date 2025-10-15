@@ -24,18 +24,24 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("Index.tsx useEffect - user:", user?.email);
+    
     if (!user) {
+      console.log("No user, setting loading to false");
       setLoading(false);
       return;
     }
 
     const loadDreamData = async () => {
+      console.log("Loading dream data for user:", user.id);
       try {
         // Сначала попытка миграции из localStorage
         await DreamService.migrateFromLocalStorage(user.id);
 
         // Загрузка данных из Supabase
+        console.log("Fetching dream from Supabase...");
         const dream = await DreamService.getUserDream(user.id);
+        console.log("Dream data received:", dream);
         
         if (dream) {
           setDreamData({
@@ -48,6 +54,9 @@ const Index = () => {
             startDate: dream.start_date,
             lastSavedDate: dream.last_saved_date,
           });
+          console.log("Dream data set successfully");
+        } else {
+          console.log("No dream found for user, will show setup form");
         }
       } catch (error: any) {
         console.error("Ошибка загрузки данных:", error);
@@ -59,6 +68,7 @@ const Index = () => {
         // Даже при ошибке позволяем создать новую мечту
         setDreamData(null);
       } finally {
+        console.log("Setting loading to false");
         setLoading(false);
       }
     };
