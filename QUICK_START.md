@@ -187,7 +187,7 @@ git push
 
 Через ~2 минуты ваш сайт будет доступен на:
 ```
-https://ваш-username.github.io/dreambox/
+https://ваш-username.github.io/dream-box/
 ```
 
 ---

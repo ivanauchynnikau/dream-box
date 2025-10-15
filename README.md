@@ -112,7 +112,7 @@ npm run preview
 
 После успешного деплоя сайт будет доступен по адресу:
 ```
-https://[ваш-username].github.io/dreambox/
+https://[ваш-username].github.io/dream-box/
 ```
 
 ### Автоматический деплой

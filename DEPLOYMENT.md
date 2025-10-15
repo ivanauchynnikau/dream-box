@@ -47,7 +47,7 @@
 
 После успешного деплоя ваш сайт будет доступен по адресу:
 ```
-https://[ваш-username].github.io/dreambox/
+https://[ваш-username].github.io/dream-box/
 ```
 
 ## Возможные проблемы и решения
