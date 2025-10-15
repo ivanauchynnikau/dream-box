@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Settings, Plus, Calendar, DollarSign, TrendingUp } from "lucide-react";
+import { Settings, Plus, Calendar, DollarSign, TrendingUp, LogOut } from "lucide-react";
 import { toast } from "sonner";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface DreamData {
   dreamName: string;
@@ -24,9 +25,19 @@ interface DreamTrackerProps {
 }
 
 export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTrackerProps) => {
+  const { signOut, user } = useAuth();
   const [savingAmount, setSavingAmount] = useState<string>("");
   const [daysLeft, setDaysLeft] = useState(0);
   const [dailyRecommendation, setDailyRecommendation] = useState(0);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast.success("Вы вышли из системы");
+    } catch (error) {
+      toast.error("Ошибка при выходе");
+    }
+  };
 
   useEffect(() => {
     const calculateDaysLeft = () => {
@@ -86,17 +97,34 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">
-            Моя мечта
-          </h1>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={onEdit}
-            className="border-border hover:bg-secondary"
-          >
-            <Settings className="w-4 h-4" />
-          </Button>
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">
+              Моя мечта
+            </h1>
+            {user?.email && (
+              <p className="text-sm text-muted-foreground mt-1">{user.email}</p>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={onEdit}
+              className="border-border hover:bg-secondary"
+              title="Редактировать мечту"
+            >
+              <Settings className="w-4 h-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={handleSignOut}
+              className="border-border hover:bg-destructive hover:text-destructive-foreground"
+              title="Выйти"
+            >
+              <LogOut className="w-4 h-4" />
+            </Button>
+          </div>
         </div>
 
         {/* Dream Card */}
