@@ -47,7 +47,7 @@
 
 После успешного деплоя ваш сайт будет доступен по адресу:
 ```
-https://[ваш-username].github.io/dream-weaver-vault/
+https://[ваш-username].github.io/dreambox/
 ```
 
 ## Возможные проблемы и решения

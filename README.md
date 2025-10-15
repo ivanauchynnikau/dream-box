@@ -1,4 +1,4 @@
-# Dream Weaver Vault
+# DreamBox
 
 Приложение для отслеживания накоплений на вашу мечту.
 
@@ -23,7 +23,7 @@
 git clone <YOUR_GIT_URL>
 
 # Шаг 2: Перейдите в директорию проекта
-cd dream-weaver-vault
+cd dreambox
 
 # Шаг 3: Установите зависимости
 npm i
@@ -75,7 +75,7 @@ npm run preview
 
 После успешного деплоя сайт будет доступен по адресу:
 ```
-https://[ваш-username].github.io/dream-weaver-vault/
+https://[ваш-username].github.io/dreambox/
 ```
 
 ### Автоматический деплой

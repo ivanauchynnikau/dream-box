@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/dream-weaver-vault/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/dreambox/' : '/',
   server: {
     host: "::",
     port: 8080,

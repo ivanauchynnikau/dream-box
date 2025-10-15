@@ -37,7 +37,7 @@ export const DreamSetup = ({ onSave, initialData }: DreamSetupProps) => {
   } = useForm<DreamFormData>({
     resolver: zodResolver(dreamSchema),
     defaultValues: initialData || {
-      dreamName: "VW Tiguan 2019 черного цвета",
+      dreamName: "",
       imageUrl: "",
       targetAmount: 15000,
       timeValue: 12,
@@ -59,7 +59,7 @@ export const DreamSetup = ({ onSave, initialData }: DreamSetupProps) => {
             </div>
           </div>
           <CardTitle className="text-3xl font-bold bg-gradient-to-r from-primary to-amber-600 bg-clip-text text-transparent">
-            {initialData ? "Редактировать мечту" : "Настройте свою мечту"}
+            {initialData ? "Редактировать мечту" : "Какая у тебя мечта?"}
           </CardTitle>
           <CardDescription className="text-muted-foreground">
             {initialData ? "Обновите параметры своей мечты" : "Определите цель и начните путь к её достижению"}
@@ -68,11 +68,11 @@ export const DreamSetup = ({ onSave, initialData }: DreamSetupProps) => {
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="dreamName">Название мечты</Label>
+              <Label htmlFor="dreamName">Мечта</Label>
               <Input
                 id="dreamName"
                 {...register("dreamName")}
-                placeholder="Например: VW Tiguan 2019"
+                placeholder="Купить свой остров!"
                 className="bg-secondary border-input"
               />
               {errors.dreamName && (
@@ -81,7 +81,7 @@ export const DreamSetup = ({ onSave, initialData }: DreamSetupProps) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="imageUrl">Ссылка на изображение</Label>
+              <Label htmlFor="imageUrl">Фото мечты</Label>
               <Input
                 id="imageUrl"
                 {...register("imageUrl")}
@@ -94,7 +94,7 @@ export const DreamSetup = ({ onSave, initialData }: DreamSetupProps) => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="targetAmount">Целевая сумма ($)</Label>
+              <Label htmlFor="targetAmount">Сумма до мечты ($)</Label>
               <Input
                 id="targetAmount"
                 type="number"
