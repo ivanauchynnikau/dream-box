@@ -114,6 +114,26 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
             <CardTitle className="text-2xl">{dreamData.dreamName}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
+            {/* Daily Recommendation */}
+            {!savedToday && dailyRecommendation > 0 && (
+              <div className="bg-gradient-to-r from-accent/10 to-primary/10 rounded-lg p-4 border border-accent/20">
+                <p className="text-sm text-muted-foreground mb-1">
+                  💡 Рекомендация на сегодня
+                </p>
+                <p className="text-lg font-semibold">
+                  Отложите ${dailyRecommendation.toFixed(2)}, чтобы достичь цели вовремя
+                </p>
+              </div>
+            )}
+
+            {savedToday && (
+              <div className="bg-accent/10 rounded-lg p-4 border border-accent/20">
+                <p className="text-sm text-accent font-medium">
+                  ✅ Сегодня вы уже откладывали деньги. Отличная работа!
+                </p>
+              </div>
+            )}
+
             {/* Add Savings */}
             <div className="space-y-3">
               <label className="text-sm font-medium">Отложить сегодня</label>
@@ -212,25 +232,6 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
               </div>
             </div>
 
-            {/* Daily Recommendation */}
-            {!savedToday && dailyRecommendation > 0 && (
-              <div className="bg-gradient-to-r from-accent/10 to-primary/10 rounded-lg p-4 border border-accent/20">
-                <p className="text-sm text-muted-foreground mb-1">
-                  💡 Рекомендация на сегодня
-                </p>
-                <p className="text-lg font-semibold">
-                  Отложите ${dailyRecommendation.toFixed(2)}, чтобы достичь цели вовремя
-                </p>
-              </div>
-            )}
-
-            {savedToday && (
-              <div className="bg-accent/10 rounded-lg p-4 border border-accent/20">
-                <p className="text-sm text-accent font-medium">
-                  ✅ Сегодня вы уже откладывали деньги. Отличная работа!
-                </p>
-              </div>
-            )}
           </CardContent>
         </Card>
 
