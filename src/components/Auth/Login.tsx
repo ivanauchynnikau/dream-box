@@ -36,7 +36,8 @@ export const Login = () => {
       setLoading(false);
     } else {
       toast.success("Вы успешно вошли!");
-      // Навигация происходит автоматически через ProtectedRoute
+      setLoading(false);
+      navigate("/");
     }
   };
 
