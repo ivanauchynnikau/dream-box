@@ -19,11 +19,11 @@ interface DreamData {
 
 interface DreamTrackerProps {
   dreamData: DreamData;
-  onReset: () => void;
+  onEdit: () => void;
   onUpdateSavings: (amount: number) => void;
 }
 
-export const DreamTracker = ({ dreamData, onReset, onUpdateSavings }: DreamTrackerProps) => {
+export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTrackerProps) => {
   const [savingAmount, setSavingAmount] = useState<string>("");
   const [daysLeft, setDaysLeft] = useState(0);
   const [dailyRecommendation, setDailyRecommendation] = useState(0);
@@ -92,7 +92,7 @@ export const DreamTracker = ({ dreamData, onReset, onUpdateSavings }: DreamTrack
           <Button
             variant="outline"
             size="icon"
-            onClick={onReset}
+            onClick={onEdit}
             className="border-border hover:bg-secondary"
           >
             <Settings className="w-4 h-4" />

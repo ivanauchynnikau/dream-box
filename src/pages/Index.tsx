@@ -46,18 +46,30 @@ const Index = () => {
     localStorage.setItem("dreamData", JSON.stringify(updatedData));
   };
 
-  const handleReset = () => {
-    setDreamData(null);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(true);
   };
 
-  if (!dreamData) {
-    return <DreamSetup onSave={handleSaveDream} />;
+  const handleSaveEdit = (data: any) => {
+    handleSaveDream(data);
+    setIsEditing(false);
+  };
+
+  if (!dreamData || isEditing) {
+    return (
+      <DreamSetup 
+        onSave={isEditing ? handleSaveEdit : handleSaveDream} 
+        initialData={dreamData || undefined}
+      />
+    );
   }
 
   return (
     <DreamTracker
       dreamData={dreamData}
-      onReset={handleReset}
+      onEdit={handleEdit}
       onUpdateSavings={handleUpdateSavings}
     />
   );
