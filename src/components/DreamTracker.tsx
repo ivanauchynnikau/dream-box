@@ -200,6 +200,16 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
                   ${(dailyRecommendation * 30).toFixed(2)}
                 </p>
               </div>
+
+              <div className="bg-secondary rounded-lg p-4 border border-border">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <TrendingUp className="w-4 h-4" />
+                  <span className="text-sm">В год</span>
+                </div>
+                <p className="text-2xl font-bold text-green-500">
+                  ${(dailyRecommendation * 365).toFixed(2)}
+                </p>
+              </div>
             </div>
 
             {/* Daily Recommendation */}
