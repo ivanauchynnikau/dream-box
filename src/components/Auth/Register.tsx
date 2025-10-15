@@ -46,13 +46,9 @@ export const Register = () => {
       });
       setLoading(false);
     } else {
-      toast.success("Регистрация успешна!", {
-        description: "Проверьте email для подтверждения аккаунта",
-      });
+      toast.success("Регистрация успешна!");
       setLoading(false);
-      // Некоторые настройки Supabase требуют подтверждения email,
-      // другие автоматически входят. Переходим на логин для универсальности
-      setTimeout(() => navigate("/login"), 2000);
+      navigate("/");
     }
   };
 
