@@ -152,7 +152,7 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="bg-secondary rounded-lg p-4 border border-border">
                 <div className="flex items-center gap-2 text-muted-foreground mb-2">
                   <Calendar className="w-4 h-4" />
@@ -178,6 +178,26 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
                 </div>
                 <p className="text-2xl font-bold text-accent">
                   ${dailyRecommendation.toFixed(2)}
+                </p>
+              </div>
+
+              <div className="bg-secondary rounded-lg p-4 border border-border">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <TrendingUp className="w-4 h-4" />
+                  <span className="text-sm">В неделю</span>
+                </div>
+                <p className="text-2xl font-bold text-primary">
+                  ${(dailyRecommendation * 7).toFixed(2)}
+                </p>
+              </div>
+
+              <div className="bg-secondary rounded-lg p-4 border border-border">
+                <div className="flex items-center gap-2 text-muted-foreground mb-2">
+                  <TrendingUp className="w-4 h-4" />
+                  <span className="text-sm">В месяц</span>
+                </div>
+                <p className="text-2xl font-bold text-amber-500">
+                  ${(dailyRecommendation * 30).toFixed(2)}
                 </p>
               </div>
             </div>
