@@ -150,6 +150,21 @@ const Index = () => {
     setIsEditing(false);
   };
 
+  const handleDelete = async () => {
+    if (!user) return;
+
+    try {
+      await DreamService.deleteDream(user.id);
+      setDreamData(null);
+      setIsEditing(false);
+      toast.success("Мечта удалена");
+    } catch (error: any) {
+      toast.error("Ошибка удаления", {
+        description: error.message,
+      });
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -175,6 +190,7 @@ const Index = () => {
       dreamData={dreamData}
       onEdit={handleEdit}
       onUpdateSavings={handleUpdateSavings}
+      onDelete={handleDelete}
     />
   );
 };

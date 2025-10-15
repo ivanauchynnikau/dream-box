@@ -3,9 +3,20 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { Settings, Plus, Calendar, DollarSign, TrendingUp, LogOut } from "lucide-react";
+import { Settings, Plus, Calendar, DollarSign, TrendingUp, LogOut, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/contexts/AuthContext";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface DreamData {
   dreamName: string;
@@ -22,9 +33,10 @@ interface DreamTrackerProps {
   dreamData: DreamData;
   onEdit: () => void;
   onUpdateSavings: (amount: number) => void;
+  onDelete: () => void;
 }
 
-export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTrackerProps) => {
+export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings, onDelete }: DreamTrackerProps) => {
   const { signOut, user } = useAuth();
   const [savingAmount, setSavingAmount] = useState<string>("");
   const [daysLeft, setDaysLeft] = useState(0);
@@ -115,6 +127,32 @@ export const DreamTracker = ({ dreamData, onEdit, onUpdateSavings }: DreamTracke
             >
               <Settings className="w-4 h-4" />
             </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-border hover:bg-destructive hover:text-destructive-foreground"
+                  title="Удалить мечту"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Удалить мечту?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Это действие нельзя отменить. Все данные о текущей мечте будут удалены.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Отмена</AlertDialogCancel>
+                  <AlertDialogAction onClick={onDelete} className="bg-destructive hover:bg-destructive/90">
+                    Удалить
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             <Button
               variant="outline"
               size="icon"

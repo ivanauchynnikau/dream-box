@@ -78,6 +78,19 @@ export class DreamService {
     return await this.updateDream(userId, updatedData);
   }
 
+  // Удалить мечту пользователя
+  static async deleteDream(userId: string): Promise<void> {
+    const { error } = await supabase
+      .from('dreams')
+      .delete()
+      .eq('user_id', userId);
+
+    if (error) {
+      console.error('Ошибка удаления мечты:', error);
+      throw error;
+    }
+  }
+
   // Мигрировать данные из localStorage
   static async migrateFromLocalStorage(userId: string): Promise<void> {
     try {
