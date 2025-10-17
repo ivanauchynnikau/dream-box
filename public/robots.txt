@@ -1,3 +1,14 @@
+# DreamBox - Robots.txt
+User-agent: *
+Allow: /
+Disallow: /app/
+Disallow: /login
+Disallow: /register
+
+# Sitemap
+Sitemap: https://ivan.github.io/dream-box/sitemap.xml
+
+# Specific crawlers
 User-agent: Googlebot
 Allow: /
 
@@ -8,7 +19,4 @@ User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
 Allow: /
