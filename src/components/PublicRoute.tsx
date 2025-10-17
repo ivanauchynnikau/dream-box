@@ -20,9 +20,9 @@ export const PublicRoute = ({ children }: PublicRouteProps) => {
     );
   }
 
-  // Если пользователь авторизован, перенаправляем на главную
+  // Если пользователь авторизован, перенаправляем в приложение
   if (user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/app" replace />;
   }
 
   return <>{children}</>;

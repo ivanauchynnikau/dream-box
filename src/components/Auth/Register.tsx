@@ -48,7 +48,7 @@ export const Register = () => {
     } else {
       toast.success("Регистрация успешна!");
       setLoading(false);
-      navigate("/");
+      navigate("/app");
     }
   };
 

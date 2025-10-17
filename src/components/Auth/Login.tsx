@@ -37,7 +37,7 @@ export const Login = () => {
     } else {
       toast.success("Вы успешно вошли!");
       setLoading(false);
-      navigate("/");
+      navigate("/app");
     }
   };
 

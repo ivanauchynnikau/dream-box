@@ -8,6 +8,7 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { PublicRoute } from "@/components/PublicRoute";
 import { Login } from "@/components/Auth/Login";
 import { Register } from "@/components/Auth/Register";
+import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -21,6 +22,7 @@ const App = () => (
         <Sonner />
         <HashRouter>
           <Routes>
+            <Route path="/" element={<Landing />} />
             <Route
               path="/login"
               element={
@@ -38,7 +40,7 @@ const App = () => (
               }
             />
             <Route
-              path="/"
+              path="/app"
               element={
                 <ProtectedRoute>
                   <Index />
