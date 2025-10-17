@@ -6,7 +6,7 @@ Disallow: /login
 Disallow: /register
 
 # Sitemap
-Sitemap: https://ivan.github.io/dream-box/sitemap.xml
+Sitemap: https://my-dreambox.ru/sitemap.xml
 
 # Specific crawlers
 User-agent: Googlebot

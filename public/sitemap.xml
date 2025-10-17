@@ -6,7 +6,7 @@
   
   <!-- Landing Page -->
   <url>
-    <loc>https://ivan.github.io/dream-box/</loc>
+    <loc>https://my-dreambox.ru/</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,7 +14,7 @@
   
   <!-- Login Page -->
   <url>
-    <loc>https://ivan.github.io/dream-box/#/login</loc>
+    <loc>https://my-dreambox.ru/#/login</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -22,7 +22,7 @@
   
   <!-- Register Page -->
   <url>
-    <loc>https://ivan.github.io/dream-box/#/register</loc>
+    <loc>https://my-dreambox.ru/#/register</loc>
     <lastmod>2025-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
